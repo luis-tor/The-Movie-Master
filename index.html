@@ -5,11 +5,108 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Movie Master</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="./styles/mobile.css">
 </head>
 <body>
-    <h1>The movie master</h1>
+    <h2 class="">THE MOVIE MASTER</h2>
 
+    <main class="main">
+
+            <header class="header-article">
+                <h3>Populares de la semana</h3>
+                <button type="button">Ver más</button>
+            </header>
+            <article class="main-article">
+                <div id="trending-movies" class="trending-container">
+                    <!-- Aqui se insertan las peliculas populares de la semana -->
+                </div>
+            </article>
+            
+            
+            <header class="header-article">
+                <h3>Categorías</h3>
+            </header>
+            <article class="main-article">
+                <div id="category-list" class="category-list">
+                    <!-- <button class="category-item">Romance</button>
+                    <button class="category-item">Acción</button>
+                    <button class="category-item">Drama</button> -->
+                </div>
+            </article>
+
+        <form class="searchForm" action="">
+            <input type="text" placeholder="Search..." name="search">
+            <button><span class="material-symbols-outlined">search</span></button>
+        </form>
+
+
+    </main>
+
+    <main class="item-detail inactive">
+
+        <div class="backarrow">
+            <button class="backarrow-button">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+        </div>
+        
+        <article class="hero-image">
+            <img class="hero-image_thumbnail" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zFTLPipninMF4THDbdkQUZLWMEw.jpg" alt="Título de la pelicula">
+        </article>
+        
+        
+        <article class="info-detail">
+            <h3 class="item-tittle">The Batman</h3>
+            <p class="item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam consectetur cum nulla quibusdam, impedit amet cupiditate omnis soluta praesentium corrupti voluptatibus eum et est dolor dolorum porro nemo eveniet a.</p>
+
+            <div class="item-rating">
+                <span class="material-symbols-outlined fill-purple">star</span>
+                <span class="material-symbols-outlined fill-purple">star</span>
+                <span class="material-symbols-outlined fill-purple">star</span>
+                <span class="material-symbols-outlined fill-purple">star_half</span>
+                <span class="material-symbols-outlined">grade</span>
+                <p class="grade-info">
+                    3.9/5
+                    <span class="legend-detail">Calificación</span>
+                </p>
+            </div>
+
+            
+                <p class="item-release">
+                    <span class="legend-detail">Estreno</span>
+                    18/05/2019
+                </p>
+                <p class="item-duration">
+                    <span class="legend-detail">Duración</span>
+                    2h
+                </p>
+                <p class="item-tagline">
+                    <span class="legend-detail">Presupuesto</span>
+                    $200,000,000
+                </p>
+                <p class="item-budget">
+                    <span class="legend-detail">Presupuesto</span>
+                    $200,000,000
+                </p>
+                <p class="item-revenue">
+                    <span class="legend-detail">Ganancias</span>
+                    $380,000,000
+                </p>
+                <p class="item-genres">
+                    <span class="legend-detail">Géneros</span>
+                    Acción, Aventura, Ciencia Ficción
+                </p>
+
+        </article>
+    </main>
+
+    <main class="search-results inactive">
+
+    </main>
+
+    <script src="./src/secrets.js"></script>
     <script src="./src/main.js"></script>
+    
 </body>
 </html>
