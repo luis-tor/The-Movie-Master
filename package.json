@@ -1,0 +1,19 @@
+{
+  "name": "the-movie-master",
+  "version": "1.0.0",
+  "description": "Aplicación para agregar a mi portafolio profesional de frontend developer",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luis-tor/The-Movie-Master.git"
+  },
+  "author": "Luis Torres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luis-tor/The-Movie-Master/issues"
+  },
+  "homepage": "https://github.com/luis-tor/The-Movie-Master#readme"
+}

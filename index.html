@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +9,17 @@
     <link rel="stylesheet" href="./styles/mobile.css">
 </head>
 <body>
-    <h2 class="">THE MOVIE MASTER</h2>
+    <h2 id="name-app" class="logo">THE MOVIE MASTER</h2>
+    
+    <form id="searchForm" class="searchForm">
+        <input id="search-input" class="input-search" type="text" placeholder="Busca una película">
+        <button type="button" id="search-button" ><span class="material-symbols-outlined">search</span></button>
+    </form>
 
-    <main class="main">
-
+    <main id="home-page" class="home-page">
             <header class="header-article">
                 <h3>Populares de la semana</h3>
-                <button type="button">Ver más</button>
+                <button type="button" id="trending-button">Ver más</button>
             </header>
             <article class="main-article">
                 <div id="trending-movies" class="trending-container">
@@ -29,21 +33,48 @@
             </header>
             <article class="main-article">
                 <div id="category-list" class="category-list">
-                    <!-- <button class="category-item">Romance</button>
-                    <button class="category-item">Acción</button>
-                    <button class="category-item">Drama</button> -->
+                    <!-- Aqui se agregan los botones de categorias -->
                 </div>
             </article>
 
-        <form class="searchForm" action="">
-            <input type="text" placeholder="Search..." name="search">
-            <button><span class="material-symbols-outlined">search</span></button>
-        </form>
+        
 
 
     </main>
 
-    <main class="item-detail inactive">
+    <main class="trending-page" id="trending-page">
+        <header class="header-article">
+            <button id="back-button-trending" class="backarrow-button">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            
+            <h3 class="title-right">Peliculas Populares</h3>
+            
+        </header>
+        <article class="main-article">
+            <div id="trending-movies-page" class="trending-container-page">
+                <!-- Aqui se insertan las peliculas populares de la semana -->
+            </div>
+        </article>
+    </main>
+
+    <main id="category-page" class="page-layout">
+        <header class="header-article">
+            <button id="back-button-categories" class="backarrow-button">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            
+            <h3 class="title-right">Peliculas de <span id="category-name"></span></h3>
+            
+        </header>
+        <article class="main-article">
+            <div id="category-movies" class="trending-container-page">
+                <!-- Aqui se insertan las peliculas de la categoria seleccionada -->
+            </div>
+        </article>
+    </main>
+
+    <main id="movieDetail" class="item-detail">
 
         <div class="backarrow">
             <button class="backarrow-button">
@@ -101,12 +132,22 @@
         </article>
     </main>
 
-    <main class="search-results inactive">
-
+    <main id="search-page" class="search-results">
+        <header class="header-article">
+            <button id="back-button-search" class="backarrow-button">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            
+            <h3 class="title-right">Búsqueda</h3>
+            
+        </header>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js"></script>
+    <script src="./src/nodes.js"></script>
     <script src="./src/main.js"></script>
+    <script src="./src/navigation.js"></script>
     
 </body>
 </html>
