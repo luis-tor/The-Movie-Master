@@ -17,6 +17,10 @@ backArrowButtonCategories.addEventListener('click', () => {
     location.hash = window.history.back();
 },false);
 
+backArrowButtonDetail.addEventListener('click', () => {
+    location.hash = window.history.back();
+},false);
+
 backArrowButtonSearch.addEventListener('click', () => {
     location.hash = window.history.back();
 },false);
@@ -26,7 +30,6 @@ function navigator(){
     if(location.hash.startsWith('#trends')){
         trendingPage();
     }else if(location.hash.startsWith('#search=')){
-        console.log("You are searching for: " + location.hash.substring(8));
         searchMoviePage();
     }else if (location.hash.startsWith('#movie=')){
         movieDetail();
@@ -36,11 +39,12 @@ function navigator(){
         homePage();
     }
 
-    location.hash
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 }
 
 function homePage(){
-    console.log("You're on the home page");
+    
 
     searchForm.classList.remove('inactive');
     nameApp.classList.remove('inactive');
@@ -57,7 +61,7 @@ function homePage(){
 }
 
 function trendingPage(){
-    console.log("You're on the trending page");
+    
     searchForm.classList.add('inactive');
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
@@ -68,18 +72,25 @@ function trendingPage(){
 }
 
 function movieDetail(){
-    console.log("You're watching a movie");
-    
+
     searchForm.classList.add('inactive');
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
+    trendingMain.classList.add('inactive');
+    categoryPageNode.classList.add('inactive');
+    searchPage.classList.add('inactive');
     
     itemDetailPage.classList.remove('inactive');
+
+    const movieID = location.hash.substring(7);
+    
+
+    getMovieDetail(movieID);
+    getSimilarMovies(movieID);
+    getMovieCast(movieID);
 }
 
 function categoryPage(){
-    console.log("You're in the category page");
-    console.log(location.hash.substring(10).split('-')[1]);
     searchForm.classList.add('inactive');
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
@@ -93,7 +104,7 @@ function categoryPage(){
 }
 
 function searchMoviePage(){
-    console.log("You're in the search page");
+    
     searchForm.classList.add('inactive');
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
@@ -102,4 +113,6 @@ function searchMoviePage(){
     itemDetailPage.classList.add('inactive');
     
     searchPage.classList.remove('inactive');
+    const movieSearched = location.hash.substring(8);
+    getSearchMovie(movieSearched);
 }
