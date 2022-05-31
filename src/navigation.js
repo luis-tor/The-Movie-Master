@@ -25,6 +25,10 @@ backArrowButtonSearch.addEventListener('click', () => {
     location.hash = window.history.back();
 },false);
 
+backArrowButtonPerson.addEventListener('click', () => {
+    location.hash = window.history.back();
+},false);
+
 function navigator(){
 
     if(location.hash.startsWith('#trends')){
@@ -35,6 +39,8 @@ function navigator(){
         movieDetail();
     }else if (location.hash.startsWith('#category=')){
         categoryPage();
+    }else if(location.hash.startsWith('#person=')){
+        personDetailPage();
     }else{
         homePage();
     }
@@ -54,6 +60,7 @@ function homePage(){
     itemDetailPage.classList.add('inactive');
     searchPage.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
+    personPage.classList.add('inactive');
 
 
     getTrendingMovies(trendingMovies);
@@ -66,6 +73,7 @@ function trendingPage(){
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
+    personPage.classList.add('inactive');
 
     trendingMain.classList.remove('inactive');
     getTrendingMovies(trendingMoviesPage);
@@ -79,6 +87,7 @@ function movieDetail(){
     trendingMain.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
     searchPage.classList.add('inactive');
+    personPage.classList.add('inactive');
     
     itemDetailPage.classList.remove('inactive');
 
@@ -95,6 +104,7 @@ function categoryPage(){
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
     trendingMain.classList.add('inactive');
+    personPage.classList.add('inactive');
     
     categoryPageNode.classList.remove('inactive');
     
@@ -111,8 +121,24 @@ function searchMoviePage(){
     trendingMain.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
     itemDetailPage.classList.add('inactive');
-    
+    personPage.classList.add('inactive');
+
     searchPage.classList.remove('inactive');
     const movieSearched = location.hash.substring(8);
     getSearchMovie(movieSearched);
+}
+
+function personDetailPage(){
+    searchForm.classList.add('inactive');
+    nameApp.classList.add('inactive');
+    homeMain.classList.add('inactive');
+    trendingMain.classList.add('inactive');
+    categoryPageNode.classList.add('inactive');
+    itemDetailPage.classList.add('inactive');
+    searchPage.classList.add('inactive');
+    
+    personPage.classList.remove('inactive');
+    const personID = location.hash.substring(8);
+    getPersonInfo(personID);
+    getPersonMovies(personID);
 }

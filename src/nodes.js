@@ -14,6 +14,7 @@ const backArrowButtonTrending = $('#back-button-trending');
 const backArrowButtonCategories = $('#back-button-categories');
 const backArrowButtonDetail = $('#back-button-detail');
 const backArrowButtonSearch = $('#back-button-search');
+const backArrowButtonPerson = $('#back-button-person');
 
 // Categories Section
 const categoryList = $('#category-list');
@@ -46,3 +47,10 @@ const searchResultsPage = $('#search-results');
 //Categories Page
 const spanCategories = $('#category-name');
 const categoryMovies = $('#category-movies');
+
+//Person Page
+const personPage = $('#person-page');
+const personImage = $('#person-image');
+const personGeneralInfo = $('#general-info-person');
+
+const creditMovies = $('#credit-movies');

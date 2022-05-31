@@ -13,6 +13,19 @@ function clearWords(str){
     return decodeURIComponent(str);
 }
 
+function calculateAge(birthday,deathday){
+    const today = new Date(deathday);
+    const birthDate = new Date(birthday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    return age;
+}
+
 function renderMovies(containerID,movies){
     
     containerID.innerHTML = "";
@@ -33,7 +46,7 @@ function renderMovies(containerID,movies){
             location.hash = `#movie=${movie.id}`;
         });
         
-        if(containerID.id !== 'trending-movies' && containerID.id !== 'similar-movies'){    
+        if(containerID.id !== 'trending-movies' && containerID.id !== 'similar-movies' && containerID.id !== 'credit-movies'){    
             const movieRatingText = document.createElement('p');
             movieRatingText.innerText = `${movie.vote_average}/10 ☆`;
             movieRating.appendChild(movieRatingText);
@@ -54,6 +67,10 @@ function renderCast(containerID,actors){
     actors.forEach(actor => {
         const characterCard = document.createElement('section');
         characterCard.classList.add('cast-member');
+
+        characterCard.addEventListener('click', () => {
+            location.hash = `#person=${actor.id}`;
+        });
 
         const characterImage = document.createElement('img');
         characterImage.setAttribute('src', `${IMG_PATH}${actor.profile_path}`);
@@ -83,9 +100,13 @@ function renderCast(containerID,actors){
 
 async function getTrendingMovies(idSection){
     const {data} = await api('trending/movie/week');
-    const movies = data.results;
+    let movies = data.results;
 
     idSection.innerHTML = "";
+
+    if(idSection.id === 'trending-movies'){
+        movies = movies.slice(0,10);
+    }
 
     renderMovies(idSection,movies);
 }
@@ -219,4 +240,68 @@ async function getMovieCast(idMovie){
 
 
     renderCast(castMembers,actors);
+}
+
+async function getPersonInfo(idPerson){
+    const {data: person} = await api(`person/${idPerson}`);
+
+    let age = 0;
+
+    personImage.innerHTML = "";
+    personGeneralInfo.innerHTML = "";
+    
+    const personPoster = document.createElement('img');
+    personPoster.setAttribute('src', `${IMG_PATH}${person.profile_path}`);
+    personPoster.setAttribute('alt', person.name);
+    personPoster.classList.add('hero-image_thumbnail');
+    
+    personImage.appendChild(personPoster);
+    
+    const personName = document.createElement('h2');
+    personName.classList.add('name-person');
+    personName.innerText = person.name;
+
+    personGeneralInfo.appendChild(personName);
+
+    
+    
+    
+    
+    const personBirthday = document.createElement('p');
+    personBirthday.classList.add('birthday-person');
+    personBirthday.innerHTML =  '<span class="legend-detail">Fecha de nacimiento </span>'+person.birthday;
+    personGeneralInfo.appendChild(personBirthday);
+    
+    if(person.deathday !== null){
+        age = calculateAge(person.birthday,person.deathday);
+        const personDeathday = document.createElement('p');
+        personDeathday.classList.add('deathday-person');
+        personDeathday.innerHTML = '<span class="legend-detail">Fecha de fallecimiento </span>'+ person.deathday;
+        personGeneralInfo.appendChild(personDeathday);
+    }else{
+        age = calculateAge(person.birthday,new Date());
+    }
+
+    
+    const personAge = document.createElement('p');
+    personAge.classList.add('age-person');
+    personAge.innerHTML = '<span class="legend-detail">Edad </span>'+ age;
+    personGeneralInfo.appendChild(personAge);
+
+    
+    const personPlaceOfBirth = document.createElement('p');
+    personPlaceOfBirth.classList.add('birthplace-person');
+    personPlaceOfBirth.innerHTML = '<span class="legend-detail">Lugar de nacimiento </span>'+ person.place_of_birth;
+    personGeneralInfo.appendChild(personPlaceOfBirth);
+
+    
+}
+
+async function getPersonMovies(idPerson){
+    const {data} = await api(`person/${idPerson}/movie_credits`);
+    const movies = data.cast;
+
+    creditMovies.innerHTML = "";
+
+    renderMovies(creditMovies,movies);
 }

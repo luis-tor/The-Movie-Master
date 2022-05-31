@@ -296,6 +296,31 @@ body > h2 {
 .item-revenue{grid-area: revenue;}
 .item-genres{grid-area: genres;}
 
+.general-info-person{
+    display: grid;
+    grid-template-areas:
+    'name name'
+    'biography biography'
+    'birthday age'
+    'place place'
+    'death-day death-age';
+    width: 100%;
+    margin-top: 2.4rem;
+    place-content: center;
+    padding-left: 0.8rem;
+}
+
+.name-person{
+    grid-area: name;
+    text-align: center;
+}
+
+.biography-person{grid-area: biography;}
+.birthday-person{grid-area: birthday;}
+.bityhplace-person{grid-area: place;}
+.age-person{grid-area: age;}
+.deathday-person{grid-area: death-day;}
+
 .legend-detail{
     display: block;
     width: 90%;
