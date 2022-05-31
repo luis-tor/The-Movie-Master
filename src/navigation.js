@@ -29,6 +29,10 @@ backArrowButtonPerson.addEventListener('click', () => {
     location.hash = window.history.back();
 },false);
 
+backArrowButtonCollection.addEventListener('click', () => {
+    location.hash = window.history.back();
+},false);
+
 function navigator(){
 
     if(location.hash.startsWith('#trends')){
@@ -41,6 +45,8 @@ function navigator(){
         categoryPage();
     }else if(location.hash.startsWith('#person=')){
         personDetailPage();
+    }else if(location.hash.startsWith('#collection=')){
+        collectionMoviesPage();
     }else{
         homePage();
     }
@@ -61,6 +67,7 @@ function homePage(){
     searchPage.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
     personPage.classList.add('inactive');
+    collectionPage.classList.add('inactive');
 
 
     getTrendingMovies(trendingMovies);
@@ -74,6 +81,7 @@ function trendingPage(){
     homeMain.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
     personPage.classList.add('inactive');
+    collectionPage.classList.add('inactive');
 
     trendingMain.classList.remove('inactive');
     getTrendingMovies(trendingMoviesPage);
@@ -88,6 +96,7 @@ function movieDetail(){
     categoryPageNode.classList.add('inactive');
     searchPage.classList.add('inactive');
     personPage.classList.add('inactive');
+    collectionPage.classList.add('inactive');
     
     itemDetailPage.classList.remove('inactive');
 
@@ -105,6 +114,7 @@ function categoryPage(){
     homeMain.classList.add('inactive');
     trendingMain.classList.add('inactive');
     personPage.classList.add('inactive');
+    collectionPage.classList.add('inactive');
     
     categoryPageNode.classList.remove('inactive');
     
@@ -122,6 +132,7 @@ function searchMoviePage(){
     categoryPageNode.classList.add('inactive');
     itemDetailPage.classList.add('inactive');
     personPage.classList.add('inactive');
+    collectionPage.classList.add('inactive');
 
     searchPage.classList.remove('inactive');
     const movieSearched = location.hash.substring(8);
@@ -136,9 +147,27 @@ function personDetailPage(){
     categoryPageNode.classList.add('inactive');
     itemDetailPage.classList.add('inactive');
     searchPage.classList.add('inactive');
+    collectionPage.classList.add('inactive');
     
     personPage.classList.remove('inactive');
     const personID = location.hash.substring(8);
     getPersonInfo(personID);
     getPersonMovies(personID);
+}
+
+function collectionMoviesPage(){
+    searchForm.classList.add('inactive');
+    nameApp.classList.add('inactive');
+    homeMain.classList.add('inactive');
+    trendingMain.classList.add('inactive');
+    categoryPageNode.classList.add('inactive');
+    itemDetailPage.classList.add('inactive');
+    searchPage.classList.add('inactive');
+    personPage.classList.add('inactive');
+    
+    collectionPage.classList.remove('inactive');
+    const collectionID = location.hash.substring(12);
+    console.log(collectionID);
+
+    getCollectionDetail(collectionID);
 }

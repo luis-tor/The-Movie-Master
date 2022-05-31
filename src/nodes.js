@@ -15,6 +15,7 @@ const backArrowButtonCategories = $('#back-button-categories');
 const backArrowButtonDetail = $('#back-button-detail');
 const backArrowButtonSearch = $('#back-button-search');
 const backArrowButtonPerson = $('#back-button-person');
+const backArrowButtonCollection = $('#back-button-collection');
 
 // Categories Section
 const categoryList = $('#category-list');
@@ -38,6 +39,8 @@ const detailItems = [itemPoster, itemTittle, itemDescription, itemRating, itemGr
 const castMembers = $('#cast-members');
 const similarMovies = $('#similar-movies');
 
+const belongCollection = $('#belong-collection');
+
 // Search
 const searchPage = $('#search-page');
 const searchButton = $('#search-button');
@@ -54,3 +57,9 @@ const personImage = $('#person-image');
 const personGeneralInfo = $('#general-info-person');
 
 const creditMovies = $('#credit-movies');
+
+//Collection Page
+const collectionPage = $('#collection-page');
+const collectionName = $('#collection-name');
+const collectionDetail = $('#collection-detail');
+const collectionMovies = $('#collection-movies');

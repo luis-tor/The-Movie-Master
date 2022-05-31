@@ -126,14 +126,12 @@
         <article class="secondary-info">
             <h4>Cast</h4>
             <div id="cast-members" class="trending-container">
-                <!-- <section class="cast-member">
-                    <img src="https://image.tmdb.org/t/p/w300/fSvG7qzoBBnJUmgtIuMgrK3EQPN.jpg" alt="Nombre del actor">
-                    <div class="cast-info-container">
-                        <p class="character-name">Newt Scamander</p>
-                        <p class="real-name">Eddie Redmayne</p>
-                    </div>
-                </section> -->
+                <!-- Aqui se inserta el cast de la pelicula -->
             </div>
+        </article>
+
+        <article id="belong-collection" class="secondary-info">
+            <!-- Aqui se inserta si la pelicula pertenece a una coleccion -->
         </article>
 
         <article class="secondary-info">
@@ -181,6 +179,23 @@
                 
             </div>
         </article>
+    </main>
+
+    <main id="collection-page" class="page-layout">
+        <header class="header-article">
+            <button id="back-button-collection" class="backarrow-button">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            
+            <h3 id="collection-name" class="title-right">Colecciones</h3>
+            
+        </header>
+        <article id="collection-detail" class="collection-overview">
+            <!-- Aqui se inserta la informacion de la coleccion -->
+        </article>
+        <div id="collection-movies" class="trending-container-page">
+            <!-- Aqui se insertan las peliculas de la categoria seleccionada -->
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

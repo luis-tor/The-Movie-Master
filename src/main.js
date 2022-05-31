@@ -220,6 +220,35 @@ async function getMovieDetail(idMovie){
     
 
     itemPoster.appendChild(posterImage);
+
+    belongCollection.innerHTML = "";
+
+    const titleCollection = document.createElement('h4');
+    titleCollection.innerText = "Pertenece a la colección";
+
+    const collection = document.createElement('div');
+    collection.classList.add('collection-info');
+
+    const collectionImage = document.createElement('img');
+    collectionImage.setAttribute('src', `${IMG_PATH}${movie.belongs_to_collection.backdrop_path}`);
+    collectionImage.setAttribute('alt', movie.belongs_to_collection.name);
+
+    const collectionName = document.createElement('p');
+    collectionName.innerText = movie.belongs_to_collection.name;
+    collectionName.classList.add('collection-button');
+
+    collection.appendChild(collectionImage);
+    collection.appendChild(collectionName);
+
+    collection.addEventListener('click', () => {
+        location.hash = `#collection=${movie.belongs_to_collection.id}`;
+    });
+    
+    belongCollection.appendChild(titleCollection);
+    belongCollection.appendChild(collection);
+
+
+
 }
 
 async function getSimilarMovies(idMovie){
@@ -304,4 +333,17 @@ async function getPersonMovies(idPerson){
     creditMovies.innerHTML = "";
 
     renderMovies(creditMovies,movies);
+}
+
+async function getCollectionDetail(idCollection){
+    const {data} = await api(`collection/${idCollection}`);
+
+    collectionDetail.innerHTML = "";
+    renderMovies(collectionMovies,data.parts);
+
+    collectionName.innerText = "";
+    collectionName.innerText = data.name;
+
+    collectionDetail.innerText = "";
+    collectionDetail.innerText = data.overview;
 }
