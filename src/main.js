@@ -38,9 +38,21 @@ function renderMovies(containerID,movies){
         movieRating.classList.add('rating-trending-item');
         
         
-        const imageImg = document.createElement('img');
-        imageImg.setAttribute('src', `${IMG_PATH}${movie.poster_path}`);
-        imageImg.setAttribute('alt', movie.title);
+        let imageImg = "";
+        if(movie.poster_path !== null && movie.poster_path !== ""){
+            imageImg = document.createElement('img');
+            imageImg.setAttribute('src', `${IMG_PATH}${movie.poster_path}`);
+            imageImg.setAttribute('alt', movie.title);
+            imageImg.setAttribute('loading', 'lazy');
+            moviesContainer.appendChild(imageImg);
+        }else{
+            imageImg = document.createElement('div');
+            const imageName = document.createElement('p');
+            imageName.innerText = movie.title;
+            imageImg.appendChild(imageName);
+            imageImg.classList.add('default-image','default-movie');
+            moviesContainer.appendChild(imageImg);
+        }
 
         imageImg.addEventListener('click', () => {
             location.hash = `#movie=${movie.id}`;
@@ -53,7 +65,7 @@ function renderMovies(containerID,movies){
         }
 
         moviesContainer.appendChild(movieRating);
-        moviesContainer.appendChild(imageImg);
+        
 
         // const trendingMovies = document.getElementById('trending-movies');
         containerID.appendChild(moviesContainer);
@@ -75,6 +87,7 @@ function renderCast(containerID,actors){
         const characterImage = document.createElement('img');
         characterImage.setAttribute('src', `${IMG_PATH}${actor.profile_path}`);
         characterImage.setAttribute('alt', actor.name);
+        characterImage.setAttribute('loading', 'lazy');
 
         const castInfoContainer = document.createElement('div');
         castInfoContainer.classList.add('cast-info-container');
@@ -162,10 +175,19 @@ async function getMovieDetail(idMovie){
         item.innerHTML = "";
     })
 
-    const posterImage = document.createElement('img');
-    posterImage.setAttribute('src', `${IMG_PATH}${movie.poster_path}`);
-    posterImage.setAttribute('alt', movie.title);
-    posterImage.classList.add('hero-image_thumbnail');
+    let posterImage = ""
+    if(movie.poster_path !== null && movie.poster_path !== ""){
+        posterImage = document.createElement('img');
+        posterImage.setAttribute('src', `${IMG_PATH}${movie.poster_path}`);
+        posterImage.setAttribute('alt', movie.title);
+        posterImage.classList.add('hero-image_thumbnail');
+    }else{
+        posterImage = document.createElement('div');
+        const imageName = document.createElement('p');
+        imageName.innerText = movie.title;
+        posterImage.appendChild(imageName);
+        posterImage.classList.add('default-image','default-poster');
+    }
     
     const spanLegend = document.createElement('span');
     spanLegend.classList.add('legend-detail');

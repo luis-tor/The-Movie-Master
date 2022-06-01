@@ -362,6 +362,35 @@ body > h2 {
     color: var(--support);
 }
 
+.default-image{
+    width: 14rem;
+    height: 21rem;
+    background-color: var(--grey);
+    color: var(--support);
+    font-weight: 700;
+    border-radius: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.default-movie{
+    width: 14rem;
+    height: 21rem;
+}
+
+.default-poster{
+    width: 32rem;
+    height: 48rem;
+}
+
+.default-collection{
+    width: 30.4rem;
+    height: 17.125rem;
+    border-radius: 2rem 2rem 0 0;
+}
+
 .backarrow{
     position: fixed;
     top: 0;
