@@ -11,26 +11,32 @@ searchButton.addEventListener('click', () => {
 
 backArrowButtonTrending.addEventListener('click', () => {
     location.hash = window.history.back();
+    location.hasg = window.history.go(-1);
 },false);
 
 backArrowButtonCategories.addEventListener('click', () => {
     location.hash = window.history.back();
+    location.hasg = window.history.go(-1);
 },false);
 
 backArrowButtonDetail.addEventListener('click', () => {
     location.hash = window.history.back();
+    location.hasg = window.history.go(-1);
 },false);
 
 backArrowButtonSearch.addEventListener('click', () => {
     location.hash = window.history.back();
+    location.hasg = window.history.go(-1);
 },false);
 
 backArrowButtonPerson.addEventListener('click', () => {
     location.hash = window.history.back();
+    location.hasg = window.history.go(-1);
 },false);
 
 backArrowButtonCollection.addEventListener('click', () => {
     location.hash = window.history.back();
+    location.hasg = window.history.go(-1);
 },false);
 
 function navigator(){
