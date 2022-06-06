@@ -1,3 +1,6 @@
+let trendingPageNumber = 1;
+let categoryPageNumber = 1;
+
 const api = axios.create({
     baseURL: API_PATH,
     headers:{
@@ -26,9 +29,12 @@ function calculateAge(birthday,deathday){
     return age;
 }
 
-function renderMovies(containerID,movies){
+function renderMovies(containerID,movies,clear = true){
     
-    containerID.innerHTML = "";
+    if (clear) {
+        containerID.innerHTML = "";
+    }
+
 
     movies.forEach(movie => {
         const moviesContainer = document.createElement('section');
@@ -71,6 +77,7 @@ function renderMovies(containerID,movies){
         containerID.appendChild(moviesContainer);
         
     });
+
 }
 
 function renderCast(containerID,actors){
@@ -113,15 +120,43 @@ function renderCast(containerID,actors){
 
 async function getTrendingMovies(idSection){
     const {data} = await api('trending/movie/week');
-    let movies = data.results;
-
-    idSection.innerHTML = "";
+    let movies = data.results;    
 
     if(idSection.id === 'trending-movies'){
         movies = movies.slice(0,10);
     }
 
     renderMovies(idSection,movies);
+
+    if (idSection.id === 'trending-movies-page') {
+        const loadMoreButton = document.createElement('button');
+        loadMoreButton.classList.add('load-more-button');
+        loadMoreButton.innerText = 'Cargar más';
+        loadMoreButton.addEventListener('click', getPaginatedTrendingMovies);
+        trendingMain.appendChild(loadMoreButton);
+    }
+}
+
+
+async function getPaginatedTrendingMovies(){
+    trendingPageNumber++;
+
+    const {data} = await api('trending/movie/week',{
+        params:{
+            page,
+        },
+    });
+    const movies = data.results;
+
+    renderMovies(trendingMoviesPage,movies,false);
+
+    
+        // const loadMoreButton = document.createElement('button');
+        // loadMoreButton.classList.add('load-more-button');
+        // loadMoreButton.innerText = 'Cargar más';
+        // loadMoreButton.addEventListener('click', getPaginatedTrendingMovies);
+        // idSection.appendChild(loadMoreButton);
+    
 }
 
 async function getGenres(){
@@ -147,21 +182,45 @@ async function getGenres(){
 async function getCategoryMovies(idCategory){
     const {data} = await api(`discover/movie?sort_by=popularity.desc&with_genres=${idCategory}`);
     const movies = data.results;
-    const categoryName = location.hash.substring(11).split('-')[1];
+    const categoryName = location.hash.substring(10).split('-')[1];
 
     spanCategories.innerText = clearWords(categoryName);
-    categoryMovies.innerHTML = "";
+    
 
     renderMovies(categoryMovies,movies);
+
+    const loadMoreButton = document.createElement('button');
+    loadMoreButton.classList.add('load-more-button');
+    loadMoreButton.innerText = 'Cargar más';
+    loadMoreButton.addEventListener('click', getPaginatedCategoryMovies);
+    categoryPageNode.appendChild(loadMoreButton);
+}
+
+async function getPaginatedCategoryMovies(){
+    const categoryID = location.hash.substring(10).split('-')[0];
+    categoryPageNumber++;
+    const {data} = await api(`discover/movie?sort_by=popularity.desc&with_genres=${categoryID}`,{
+        params:{
+            page: categoryPageNumber,
+        },
+    });
+    const movies = data.results;
+    renderMovies(categoryMovies,movies,false);
 }
 
 async function getSearchMovie(search){
     const {data} = await api(`search/movie?query=${search}`);
     const movies = data.results;
+    console.log(movies);
 
-    searchResultsPage.innerHTML = "";
-
-    renderMovies(searchResultsPage,movies);
+    if(movies.length > 0){
+        renderMovies(searchResultsPage,movies);
+    }else{
+        searchResultsPage.innerHTML = "";
+        const noResults = document.createElement('p');
+        noResults.innerText = "No se encontraron resultados";
+        searchResultsPage.appendChild(noResults);
+    }
 
     searchInput.value = "";
 }
@@ -277,8 +336,6 @@ async function getSimilarMovies(idMovie){
     const {data} = await api(`movie/${idMovie}/similar`);
     const movies = data.results;
 
-    similarMovies.innerHTML = "";
-
     renderMovies(similarMovies,movies);
 }
 
@@ -352,7 +409,7 @@ async function getPersonMovies(idPerson){
     const {data} = await api(`person/${idPerson}/movie_credits`);
     const movies = data.cast;
 
-    creditMovies.innerHTML = "";
+    
 
     renderMovies(creditMovies,movies);
 }

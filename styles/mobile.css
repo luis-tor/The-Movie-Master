@@ -120,7 +120,7 @@ body > h2 {
 
 .main-article{
     display: flex;
-    
+    margin-bottom: 4.2rem;
 }
 
 .trending-container{
@@ -177,6 +177,24 @@ body > h2 {
     height: auto;
     border-radius: 1.2rem;
     
+}
+
+.load-more-button{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+    background-color: var(--support);
+    color: var(--white);
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: 0.8rem;
+    margin-top: 1.2rem;
 }
 
 .cast-member{

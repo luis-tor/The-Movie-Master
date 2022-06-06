@@ -11,32 +11,32 @@ searchButton.addEventListener('click', () => {
 
 backArrowButtonTrending.addEventListener('click', () => {
     location.hash = window.history.back();
-    location.hasg = window.history.go(-1);
+    
 },false);
 
 backArrowButtonCategories.addEventListener('click', () => {
     location.hash = window.history.back();
-    location.hasg = window.history.go(-1);
+    
 },false);
 
 backArrowButtonDetail.addEventListener('click', () => {
     location.hash = window.history.back();
-    location.hasg = window.history.go(-1);
+    
 },false);
 
 backArrowButtonSearch.addEventListener('click', () => {
     location.hash = window.history.back();
-    location.hasg = window.history.go(-1);
+    
 },false);
 
 backArrowButtonPerson.addEventListener('click', () => {
     location.hash = window.history.back();
-    location.hasg = window.history.go(-1);
+    
 },false);
 
 backArrowButtonCollection.addEventListener('click', () => {
     location.hash = window.history.back();
-    location.hasg = window.history.go(-1);
+    
 },false);
 
 function navigator(){
@@ -85,6 +85,8 @@ function trendingPage(){
     searchForm.classList.add('inactive');
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
+    itemDetailPage.classList.add('inactive');
+    searchPage.classList.add('inactive');
     categoryPageNode.classList.add('inactive');
     personPage.classList.add('inactive');
     collectionPage.classList.add('inactive');
@@ -119,6 +121,8 @@ function categoryPage(){
     nameApp.classList.add('inactive');
     homeMain.classList.add('inactive');
     trendingMain.classList.add('inactive');
+    itemDetailPage.classList.add('inactive');
+    searchPage.classList.add('inactive');
     personPage.classList.add('inactive');
     collectionPage.classList.add('inactive');
     
